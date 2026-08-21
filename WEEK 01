@@ -10,6 +10,20 @@ This report documents the installation of Docker on an Ubuntu system, deploying 
 
 ---
 
+## Technical Reading & Core Concepts
+
+Before deploying the lab environment, I reviewed essential Docker terminologies and foundational concepts:
+
+* **Docker Daemon:** The background service (`dockerd`) running on the host system that manages Docker objects such as images, containers, networks, and volumes.
+* **Containers:** Isolated, lightweight runtime environments created from Docker images that package an application alongside all its dependencies.
+* **Docker Commands:** Key CLI interactions used to manage application lifecycles:
+  * `docker pull` — Downloads an image from Docker Hub to the local host.
+  * `docker run` — Creates and starts a new container from a specified image.
+  * `docker ps` — Lists active, running containers.
+* **Architecture & Isolation:** How containers share the host operating system kernel while maintaining isolated processes and filesystem namespaces.
+
+---
+
 ## 2. Docker & OWASP Juice Shop Deployment
 
 ### Step 1: Installing Docker
