@@ -1,0 +1,46 @@
+# OWASP Juice Shop Lab: Docker Setup & Vulnerability Analysis
+
+**Environment:** Ubuntu Linux (Docker)  
+**Tools Used:** Docker, OWASP Juice Shop, Firefox, Burp Suite  
+
+---
+
+## 1. Overview
+This report documents the installation of Docker on an Ubuntu system, deploying the OWASP Juice Shop containerized application, and using Burp Suite to analyze web security vulnerabilities.
+
+---
+
+## 2. Docker & OWASP Juice Shop Deployment
+
+### Step 1: Installing Docker
+Updated the package manager and installed the Docker engine on Ubuntu:
+```bash
+sudo apt update
+sudo apt install -y docker.io
+sudo systemctl enable --now docker
+
+### Step 2: Pulling & Running OWASP Juice Shop
+sudo su
+sudo docker pull bkimminich/juice-shop
+sudo docker run -d -p 3000:3000 bkimminich/juice-shop
+
+### Step 3: Verification
+Opened Firefox and navigated to `http://localhost:3000` to confirm application was live and responsive
+
+---
+
+## 3. Vulnerability Analysis with Burp Suite
+
+### Step 1: Interception & Traffic Setup
+* Enabled **FoxyProxy** in Firefox to route local web traffic through Burp Suite (`127.0.0.1:8080`).
+* Captured HTTP/HTTPS requests from `http://localhost:3000` inside Burp Suites **Proxy Intercept** tab.
+
+### Step 2: Inspection & Payload Testing
+* Forwarded valid application requests to **Burp Repeater** to analyze backend request/response behavior without client-side browser restrictions.
+* Tested input fields and parameters for security vulnerabilities, including SQL Injection and Parameter Tampering.
+
+---
+
+## 4. Key Takeaways
+* **Containerization:** Running Juice Shop in Docker isolates the vulnerable application from the host system, making it a safe, self-contained testing target.
+* **Traffic Analysis:** Burp Suite Repeater provides precise control over HTTP headers and parameter payloads to spot raw server responses (e.g., status codes and error messages).
